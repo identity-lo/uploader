@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="overflow-x-auto">
+    <table class="table table-xs">
+      <thead>
+        <tr>
+          <th>sender</th>
+          <th>filename</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in get_db %}
+            <td>i.id</td>
+            <td>i.user</td>
+            <td>i.path</td>
+            <td><a href="files/{{i.filename}}" class="btn" download>Download</a></td>
+            {% if sup %}
+            <td><a href="{{url_for('delete' , i.id)}}" class="btn" >delete</a></td>
+            {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+{% endblock content %}

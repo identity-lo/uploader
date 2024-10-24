@@ -1,0 +1,16 @@
+.master{
+    border: 3px solid #15191f;
+    border-radius: 5px;
+    width: 320px;
+    height: 290px;
+    margin: auto;
+    padding-top: 10px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.header{
+    text-align: center;
+    font-size: 70px;
+}

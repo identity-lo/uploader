@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method=post enctype=multipart/form-data>
+    <input type="file" name="file" class="file-input file-input-bordered file-input-accent w-full max-w-xs" />    
+    <input type=submit value=Upload>
+</form>
+
+{% endblock content %}
