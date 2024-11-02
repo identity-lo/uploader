@@ -18,7 +18,7 @@
         <tr>
           <th>{{i.id}}</th>
           <td>{{i.path}}</td>
-          <td><button class="btn"><a href="{{url_for('delete' , id=i.id)}}">delete</a></button></td> 
+          <td><button class="btn"><a href="{{url_for('view.deletefile' , id=i.id)}}">delete</a></button></td> 
         </tr>
         {% endfor %}
       </tbody>

@@ -12,6 +12,7 @@ class User(Model):
     username = CharField()
     email = CharField()
     password = CharField()
+    admin = TextField(null=True)
     
 
     class Meta:

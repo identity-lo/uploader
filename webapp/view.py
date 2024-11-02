@@ -4,10 +4,12 @@ from flask import (
     redirect , 
     url_for , 
     request , 
-    session
+    session,
+    send_file
 )
 import os
-from extention_model import file , user
+from models import User as user
+from models import File as file
 
 view_app = Blueprint('view' , __name__)
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -30,37 +32,46 @@ def index():
 
 @view_app.route("/dashboard")
 def dashboard():
+    global ad
+    ad = None
+
     if not session.get("username"):
-        return redirect("/auth/login")
+        return redirect(url_for("auth.loginPage"))
+    
+    if session.get("admin_val"):
+        ad = True
     get_db__file = file.select().where(file.user == session.get("username"))
 
-    return render_template("dashboard.html" , files=get_db__file)
+    return render_template("dashboard.html" , files=get_db__file , ad=ad)
 
 @view_app.route("/uploader" , methods=["GET" , "POST"])
 def uploader():
     if request.method == "POST":
         if "file" not in request.files:
-            print("a")
             return redirect(request.url)
         
         files = request.files["file"]
 
         if files.filename == '':
-            print("b")
             return redirect(request.url)
         
         if files and allowed_file(files.filename):
-            print("c")
-            files.save(dst=os.path.join("\.files" , files.filename))
+            files.save(dst=f"webapp/lfiles/{files.filename}")
             file.create(user = session.get("username") , path = files.filename)
             return redirect("/dashboard")
 
 
     return render_template("uploader.html")
 
+@view_app.route("/uploads/<name>")
+def download_file(name):
+    return send_file(f"./lfiles/{name}")
+
+
 @view_app.route("/delete/<int:id>")
 def deletefile(id):
     get_r = file.get(file.id == id)
+    os.remove(f"webapp/lfiles/{get_r.path}")
     get_r.delete_instance()
     return redirect("/dashboard")
 
