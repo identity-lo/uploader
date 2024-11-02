@@ -9,4 +9,4 @@ else:
     super_password_input = input("type your password :")
     User.create(username = super_username_input , email=super_email_input , password=super_password_input , admin="1")
 
-app.run(debug=True , host="192.168.43.251")
+app.run(debug=True)
