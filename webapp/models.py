@@ -1,24 +1,25 @@
 from peewee import (
     SqliteDatabase , 
-    TextField , 
+    CharField , 
     ForeignKeyField,
-    Model
+    Model,
+    TextField
 )
 
 db = SqliteDatabase("mydb.db")
 
 class User(Model):
-    username = TextField()
-    email = TextField()
-    password = TextField()
-    admin = TextField(default=None , null=True)
+    username = CharField()
+    email = CharField()
+    password = CharField()
+    
 
     class Meta:
         database = db
 
 class File(Model):
     user = TextField(ForeignKeyField(User))
-    path = TextField()
+    path = CharField()
 
     class Meta:
         database = db
