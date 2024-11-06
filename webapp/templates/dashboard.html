@@ -10,7 +10,30 @@
 {% else %}
 <h1 style="text-align: center;">Welcome {{session["username"]}}</h1><br><br>
 {% endif %}
-<a href="{{url_for('view.uploader')}}" class="btn btn-accent">file upload</a><br><br>
+<div class="statebar">
+  <div class="stats text-neutral-content">
+    <div class="stat">
+      <div class="stat-title">Files Upload</div>
+      <div class="stat-value" id="val">{{c}}</div>
+      <div class="stat-actions">
+        <a href="{{url_for('view.uploader')}}" class="btn btn-accent">file upload</a><br><br>
+      </div>
+    </div>
+  
+    <div class="stat">
+      <div class="stat-title">Info</div>
+      <div class="stat-value">
+        <p id="statusc">
+          status : 
+        </p>
+      </div>
+      <div class="stat-actions">
+        <a href="{{url_for('view.rank')}}"><button class="btn btn-sm">Ranks</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="overflow-x-auto">
     <table class="table">
       <!-- head -->

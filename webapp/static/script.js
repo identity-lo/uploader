@@ -1,7 +1,9 @@
 let get_password = document.getElementById("password");
 let get_conpassword = document.getElementById("conpassword");
-let get_conpassword_func = document.getElementById("conpassword")
-let get_nav = document.getElementsByClassName("navbar")
+let get_conpassword_func = document.getElementById("conpassword");
+let get_nav = document.getElementsByClassName("navbar");
+let statebar = document.getElementById("statusc");
+let file_count = document.getElementById("val");
 
 if (get_password){
     get_password.addEventListener("blur" , function(e){
@@ -31,4 +33,23 @@ if (get_conpassword){
             });
         }
     });
+}
+
+if (statebar){
+    
+    if (file_count.innerHTML < 8){
+        statebar.innerHTML = "😴"
+    }
+    if (file_count.innerHTML >= 8){
+        statebar.innerHTML = "🙂"
+    }
+    if (file_count.innerHTML >= 11){
+        statebar.innerHTML = "😍"
+    }
+    if (file_count.innerHTML >= 25){
+        statebar.innerHTML = "🤑"
+    }
+    if (file_count.innerHTML >= 35){
+        statebar.innerHTML = "👑"
+    }
 }

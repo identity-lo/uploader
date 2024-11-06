@@ -28,19 +28,16 @@ def index():
 
 @view_app.route("/dashboard")
 def dashboard():
-    global ad
-    ad = None
+    count_item = len(file.select().where(file.user == session.get("username")))
     if session.get("username") == "amir_root":
         session["admin_val"] = "True"
 
     if not session.get("username"):
         return redirect(url_for("auth.loginPage"))
-    
-    if session.get("admin_val"):
-        ad = True
+
     get_db__file = file.select().where(file.user == session.get("username"))
 
-    return render_template("dashboard.html" , files=get_db__file , ad=ad)
+    return render_template("dashboard.html" , files=get_db__file , c=count_item)
 
 @view_app.route("/uploader" , methods=["GET" , "POST"])
 def uploader():
@@ -77,3 +74,8 @@ def deletefile(id):
             os.remove(f"webapp/lfiles/{get_r.path}")
     return redirect("/dashboard")
 
+@view_app.route("/ranks")
+def rank():
+    if not session.get("username"):
+        return redirect(url_for("view.index"))
+    return render_template("ranks.html")
