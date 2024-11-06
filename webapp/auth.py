@@ -75,6 +75,9 @@ def loginPage():
         auth = AuthFactory.factoryType(type="login")
         result = auth.controler(username=username , password=password)
 
+        # get_admin = User.get(User.admin == "1")
+        # if username == get_admin.username:
+        #     session[""]
         if result == False:
             flash("username or password is not correct !")
         else:
@@ -83,3 +86,8 @@ def loginPage():
     if session.get("username"):
         return redirect(url_for("view.dashboard"))
     return render_template("login.html")
+
+@auth_app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("view.index"))

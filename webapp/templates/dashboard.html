@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
+{% block link %}<link href="{{ url_for('static' , filename='dashboard.css')}}" rel="stylesheet" type="text/css" />{% endblock link %}
+
 
 {% block content %}
-<h1 style="text-align: center;">{{request.username}} Welcome</h1><br><br>
-<a href="{{url_for('view.uploader')}}" class="link">file upload</a>
+
+{% if session["username"] == "amir_root" %}
+<h1 style="text-align: center;">Welcome {{session["username"]}} 👾ADMIN👾 !</h1><br><br>
+{% else %}
+<h1 style="text-align: center;">Welcome {{session["username"]}}</h1><br><br>
+{% endif %}
+<a href="{{url_for('view.uploader')}}" class="btn btn-accent">file upload</a><br><br>
 <div class="overflow-x-auto">
     <table class="table">
       <!-- head -->
@@ -14,15 +21,16 @@
         </tr>
       </thead>
       <tbody>
-        {% for i in files %}
-        <tr>
-          <th>{{i.id}}</th>
-          <td>{{i.path}}</td>
-          <td><button class="btn"><a href="{{url_for('view.deletefile' , id=i.id)}}">delete</a></button></td> 
-        </tr>
-        {% endfor %}
+      {% for i in files %}
+      <tr>
+        <th>{{i.id}}</th>
+        <td>{{i.path}}</td>
+        <td><button class="btn"><a href="{{url_for('view.deletefile' , id=i.id)}}">delete</a></button></td> 
+      </tr>
+      {% endfor %}
       </tbody>
     </table>
   </div>
+</div>
 
 {% endblock content %}

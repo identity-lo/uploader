@@ -1,13 +1,16 @@
 .master{
     border: 3px solid #15191f;
-    border-radius: 5px;
+    border-radius: 10px;
     width: 320px;
-    height: 290px;
+    height: 390px;
     margin: auto;
     padding-top: 10px;
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow: -12px -3px 30px -7px rgba(0,0,0,1);
+    -webkit-box-shadow: -12px -3px 30px -7px rgba(0,0,0,1);
+    -moz-box-shadow: -12px -3px 30px -7px rgba(0,0,0,1);
 }
 
 .header{

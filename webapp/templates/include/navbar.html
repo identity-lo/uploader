@@ -19,12 +19,16 @@
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li><a>Homepage</a></li>
-          <li><a>uploader</a></li>
-          <li><a>lorem</a></li>
+          {% if not session['username'] %}
+          <li><a href="{{url_for('auth.loginPage')}}">Login/Register</a></li>
+          {% else %}
+          <li><a href="{{url_for('view.dashboard')}}">dashboard</a></li>
+          <li><a href="{{url_for('auth.logout')}}">logout</a></li>
+          {% endif %}
         </ul>
       </div>
     </div>
     <div class="navbar-center">
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl">MFT-UPLOADER</a>
     </div>
   </div>

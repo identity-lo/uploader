@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}register{% endblock title %}
+{% block title %}Register{% endblock title %}
 
 {% block link %}<link href="{{ url_for('static' , filename='register.css') }}" rel="stylesheet" type="text/css" />{% endblock link %}
+{% block link2 %}
+<script src=
+"https://cdn.jsdelivr.net/npm/sweetalert2@10">
+</script>
+{% endblock link2 %}
 
 {% block message %}
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -38,9 +43,10 @@
 
 <div class="master">
 <form action="" method="post">
-    <input type="text" name="username" id="username" class="input input-bordered w-full max-w-xs" placeholder="username">
-    <input type="email" name="email" id="email" class="input input-bordered w-full max-w-xs" placeholder="email">
-    <input type="password" name="password" id="password" class="input input-bordered w-full max-w-xs" placeholder="password">
+    <input type="text" name="username" id="username" class="input input-bordered w-full max-w-xs" placeholder="username"><br><br>
+    <input type="email" name="email" id="email" class="input input-bordered w-full max-w-xs" placeholder="email"><br><br>
+    <input type="password" name="password" id="password" class="input input-bordered w-full max-w-xs" placeholder="password"><br><br>
+    <input type="password" name="password" id="conpassword" class="input input-bordered w-full max-w-xs" placeholder="confirm-password"><br><br>
     <button type="submit" class="btn">Register</button>
 
 </form>

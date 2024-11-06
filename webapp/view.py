@@ -34,6 +34,8 @@ def index():
 def dashboard():
     global ad
     ad = None
+    if session.get("username") == "amir_root":
+        session["admin_val"] = "True"
 
     if not session.get("username"):
         return redirect(url_for("auth.loginPage"))
@@ -71,7 +73,9 @@ def download_file(name):
 @view_app.route("/delete/<int:id>")
 def deletefile(id):
     get_r = file.get(file.id == id)
-    os.remove(f"webapp/lfiles/{get_r.path}")
     get_r.delete_instance()
+    for root, dirs, files in os.walk("webapp/lfiles"):
+        if get_r.path in files:
+            os.remove(f"webapp/lfiles/{get_r.path}")
     return redirect("/dashboard")
 

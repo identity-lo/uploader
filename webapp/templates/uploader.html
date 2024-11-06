@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
-
+{% block link %}<link href="{{ url_for('static' , filename='uploader.css')}}" rel="stylesheet" type="text/css" />{% endblock link %}
+{% block title %}Uploader{% endblock title %}
 {% block content %}
-
+<br><br>
+<div class="up">
 <form method=post enctype=multipart/form-data>
     <input type="file" name="file" class="file-input file-input-bordered file-input-accent w-full max-w-xs" />    
     <input type=submit value=Upload>
-</form>
+</form><br><br><br>
+<div class="flex w-full flex-col">
+    <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
+        هستید pdf , png , jpg , text شما فقط مجاز به انتخاب فایل هایی با فرمت 
+    </div>
+</div>
+</div>
 
 {% endblock content %}
