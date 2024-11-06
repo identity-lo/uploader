@@ -14,4 +14,4 @@ else:
 def notfoundPage(error):
     return render_template("404.html") , 404
 
-app.run(debug=True)
+app.run(port=5000)
