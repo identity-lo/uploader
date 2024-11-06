@@ -18,7 +18,7 @@
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><a>Homepage</a></li>
+          <li><a href="{{url_for('view.index')}}">Homepage</a></li>
           {% if not session['username'] %}
           <li><a href="{{url_for('auth.loginPage')}}">Login/Register</a></li>
           {% else %}

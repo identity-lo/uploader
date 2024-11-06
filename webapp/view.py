@@ -23,10 +23,6 @@ def allowed_file(filename):
 @view_app.route("/")
 def index():
     get_db = file.select()
-    check_admin = session.get("admin")
-    if check_admin :
-        sup = "1"
-        return render_template("index.html" , get_db=get_db , admin=sup)
 
     return render_template("index.html" , get_db=get_db)
 
@@ -48,6 +44,8 @@ def dashboard():
 
 @view_app.route("/uploader" , methods=["GET" , "POST"])
 def uploader():
+    if not session.get("username"):
+        return redirect(url_for("view.index"))
     if request.method == "POST":
         if "file" not in request.files:
             return redirect(request.url)
